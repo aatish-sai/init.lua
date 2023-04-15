@@ -19,6 +19,20 @@ lsp.configure("lua-language-server", {
     }
 })
 
+lsp.configure("yamlls", {
+    on_init = function (client)
+       client.server_capabilities.document_formatting = true
+    end,
+    settings = {
+        yaml = {
+            format = {
+                enable = true
+            },
+            keyOrdering = false
+        }
+    }
+})
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 

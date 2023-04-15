@@ -5,7 +5,8 @@ if not status then
 end
 
 catppuccin.setup({
-    flavor="macchiato"
+    flavour="mocha",
+    transparent_background = true
 })
 
 vim.cmd.colorscheme "catppuccin"

@@ -8,9 +8,6 @@ keymap("n", "<leader>pv", vim.cmd.Ex)
 keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
 
--- Paste
-keymap("n", "p", '"_dp')
-
 -- Save
 keymap("n", "<leader>w", vim.cmd.w)
 

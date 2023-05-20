@@ -1,12 +1,12 @@
-local status, catppuccin = pcall(require, "catppuccin")
+local status, theme = pcall(require, "dracula")
 
 if not status then
     return
 end
 
-catppuccin.setup({
-    flavour="mocha",
-    transparent_background = true
+theme.setup({
+    show_end_of_buffer = false,
+    transparent_bg = true
 })
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd[[colorscheme dracula]]

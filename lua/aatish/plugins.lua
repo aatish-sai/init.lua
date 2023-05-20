@@ -15,13 +15,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.cmd([[packadd packer.nvim]])
 end
 
--- Autocommand thta reloads neovim when plugins.lua files changes
-vim.cmd([[
-	augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost plugins.lua source <afile> | PackerSync
-	augroup end
-]])
 
 local status, packer = pcall(require, "packer")
 if not status then
@@ -33,24 +26,28 @@ return packer.startup(function(use)
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim")
 
-    use({
-        "catppuccin/nvim", as = "catppuccin" })
+    -- Vim Fugitive
+    use("tpope/vim-fugitive")
+    use("lewis6991/gitsigns.nvim")
+
+    -- Color Schemes
+    use({ "catppuccin/nvim", as = "catppuccin" })
+    use("folke/tokyonight.nvim")
+    use("Mofiqul/dracula.nvim")
 
     -- Telescope
     use("nvim-telescope/telescope.nvim")
 
-    use({
-        "folke/trouble.nvim",
-        config = function()
-            require("trouble").setup {
-                icons = flase
-            }
-        end
-    })
+    use({ 'nvim-telescope/telescope-ui-select.nvim' })
+    use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
+    use({ "folke/trouble.nvim" })
+
+    -- Treesitter
     use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
     use("nvim-treesitter/nvim-treesitter-textobjects")
     use("nvim-treesitter/nvim-treesitter-context")
+    use("JoosepAlviste/nvim-ts-context-commentstring")
 
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -74,6 +71,25 @@ return packer.startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
+
+    use("windwp/nvim-autopairs")
+    use("windwp/nvim-ts-autotag")
+
+    use({ "kylechui/nvim-surround" })
+
+    use({ "numToStr/Comment.nvim" })
+
+    use("jose-elias-alvarez/null-ls.nvim")
+
+    -- Lua Line
+    use({ "akinsho/bufferline.nvim" })
+    use({ "nvim-lualine/lualine.nvim" })
+
+    -- Formatter
+    use({ "mhartington/formatter.nvim" })
+
+    -- Which Key
+    use({ "folke/which-key.nvim" })
 
 
     if PACKER_BOOTSTRAP then

@@ -5,16 +5,24 @@ local opts = { silent = true }
 
 keymap("n", "<leader>pv", vim.cmd.Ex, opts)
 
+-- Window Navigation
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
+
 -- Better Page up/down
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
--- Move link in visual mode
+-- Move line in visual mode
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("v", "K", ":m '>-2<CR>gv=gv")
 
 
 keymap("n", "J", "mzJ`z")
+
+keymap("n", "Q", "<nop>")
 
 -- Better next/previous in search
 keymap("n", "n", "nzzzv", opts)
@@ -37,3 +45,9 @@ keymap("n", "<leader>w", vim.cmd.w, opts)
 keymap("n", "<leader>f", vim.lsp.buf.format)
 
 keymap("n", "<leader><leader>", vim.cmd.so, opts)
+
+-- Bufferline Navigation
+keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
+keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
+keymap("n", "<S-h>", ":BufferLineMovePrev<CR>", opts)
+keymap("n", "<S-l>", ":BufferLineMoveNext<CR>", opts)

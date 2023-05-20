@@ -13,9 +13,19 @@ ts.setup({
         "tsx",
         "css",
     },
-    sync_install = false,
-    highlight == {
+    highlight = {
         enable = true,
         additional_vim_regex_highlighting = false
-    }
+    },
+    rainbow = {
+        enable = true,
+        extended_mode = true
+    },
+    autotag = {
+        enable = true
+    },
+    indent = {
+        enable = true
+    },
+    sync_install = false,
 })

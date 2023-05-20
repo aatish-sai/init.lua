@@ -20,8 +20,8 @@ lsp.configure("lua-language-server", {
 })
 
 lsp.configure("yamlls", {
-    on_init = function (client)
-       client.server_capabilities.document_formatting = true
+    on_init = function(client)
+        client.server_capabilities.document_formatting = true
     end,
     settings = {
         yaml = {
@@ -32,6 +32,8 @@ lsp.configure("yamlls", {
         }
     }
 })
+
+lsp.configure("intelephense", {})
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -66,8 +68,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
@@ -77,4 +79,14 @@ lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
+})
+
+
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.pint,
+        null_ls.builtins.diagnostics.phpstan
+    }
 })

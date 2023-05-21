@@ -9,7 +9,7 @@ lsp.ensure_installed({
     "tsserver"
 })
 
-lsp.configure("lua-language-server", {
+lsp.configure("lua_ls", {
     settings = {
         Lua = {
             diagnostics = {
@@ -34,6 +34,10 @@ lsp.configure("yamlls", {
 })
 
 lsp.configure("intelephense", {})
+
+lsp.configure("tsserver", {
+
+})
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }

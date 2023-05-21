@@ -12,7 +12,7 @@ lualine.setup({
     options = {
         globalstatus = true,
         icons_enabled = false,
-        theme = "dracula",
+        theme = "tokyonight",
         component_separator = { left = "", right = "" },
         section_separator = { left = "", right = "" },
         always_divide_middle = true

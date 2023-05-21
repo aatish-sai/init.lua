@@ -29,6 +29,7 @@ return packer.startup(function(use)
     -- Vim Fugitive
     use("tpope/vim-fugitive")
     use("lewis6991/gitsigns.nvim")
+    use({ "rose-pine/neovim", as = "rose-pine" })
 
     -- Color Schemes
     use({ "catppuccin/nvim", as = "catppuccin" })
@@ -87,6 +88,12 @@ return packer.startup(function(use)
 
     -- Formatter
     use({ "mhartington/formatter.nvim" })
+
+    -- Vim bclose
+    use({"moll/vim-bbye"})
+
+    -- Harpoon
+    use({"ThePrimeagen/harpoon"})
 
     -- Which Key
     use({ "folke/which-key.nvim" })

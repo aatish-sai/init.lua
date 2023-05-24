@@ -1,4 +1,4 @@
-local status, theme = pcall(require, "tokyonight")
+local status, theme = pcall(require, "rose-pine")
 
 if not status then
     return
@@ -10,4 +10,4 @@ theme.setup({
     transparent_bg = true
 })
 
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme rose-pine]]

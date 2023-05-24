@@ -4,15 +4,7 @@ if not status then
 end
 
 ts.setup({
-    ensure_installed = {
-        "javascript",
-        "typescript",
-        "lua",
-        "yaml",
-        "json",
-        "tsx",
-        "css",
-    },
+    ensure_installed = "all",
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false

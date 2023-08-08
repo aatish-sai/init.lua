@@ -36,8 +36,20 @@ return packer.startup(function(use)
     use("Mofiqul/dracula.nvim")
     use({ "rose-pine/neovim", as = "rose-pine" })
 
+    -- Colorizer
+    use({'norcalli/nvim-colorizer.lua'})
+
+    -- Indent Blanklines
+    use({'lukas-reineke/indent-blankline.nvim'})
+
     -- Telescope
     use("nvim-telescope/telescope.nvim")
+
+    -- Todo Comment
+    use({'folke/todo-comments.nvim'})
+
+    -- Toogle Term
+    use({ 'akinsho/toggleterm.nvim' })
 
     use({ 'nvim-telescope/telescope-ui-select.nvim' })
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
@@ -82,10 +94,16 @@ return packer.startup(function(use)
 
     use("jose-elias-alvarez/null-ls.nvim")
 
-    -- Lua Line
-    use({ "akinsho/bufferline.nvim" })
-    use({ "nvim-lualine/lualine.nvim" })
+    -- Buffer Line
+    use({ 'akinsho/bufferline.nvim', tag = "*", requires = "nvim-tree/nvim-web-devicons" })
 
+    -- Nvim Tree
+    use({
+        "nvim-tree/nvim-tree.lua",
+        requires = {
+            "nvim-tree/nvim-web-devicons"
+        }
+    })
     -- Formatter
     use({ "mhartington/formatter.nvim" })
 

@@ -30,7 +30,9 @@ vim.opt.signcolumn = "yes"
 -- Allow @ in filename
 vim.opt.isfname:append("@-@")
 
-vim.opt.updatetime = 50
+vim.opt.shortmess:append("c")
+
+vim.opt.updatetime = 300
 
 vim.opt.colorcolumn = "80"
 

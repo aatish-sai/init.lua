@@ -7,6 +7,7 @@ return {
             build = "make",
         },
         "nvim-telescope/telescope-file-browser.nvim",
+        "nvim-telescope/telescope-ui-select.nvim"
     },
     keys = {
         { "<C-p>",      "<cmd>Telescope git_files<CR>" },

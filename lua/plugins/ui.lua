@@ -38,22 +38,30 @@ return {
             options = {
                 icons_enabled = false,
                 globalstatus = true,
-                theme = 'tokyonight',
-                sections = {
-                    lualine_c = {}
-                }
+                theme = 'auto',
+            },
+            sections = {
+                lualine_a = { 'mode' },
+                lualine_b = { "branch", 'diff' },
+                lualine_c = {
+                    { 'filename', file_status = true, path = 1 }
+                },
+                lualine_x = {
+                    { 'diagnostics', sources = { 'nvim_diagnostic' } },
+                    'encoding',
+                    'filetype'
+                },
+                lualine_y = { 'progress' },
+                lualine_z = { 'location' }
             }
         },
-        init = function()
-            vim.opt.showmode = false
-        end
     },
     {
         "lukas-reineke/indent-blankline.nvim",
         opts = {
             indent = {
                 char = "|",
-                tab_char = "|",
+                tab_char = {'a','b','c'}
             },
             scope = {
                 enabled = true

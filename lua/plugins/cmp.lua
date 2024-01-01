@@ -10,20 +10,45 @@ return {
             "L3MON4D3/LuaSnip",
             "saadparwaiz1/cmp_luasnip",
             "onsails/lspkind.nvim",
+            {
+                "tzachar/cmp-tabnine",
+                build = {
+                    "./install.sh",
+                },
+                opts = {
+                    max_lines = 1000,
+                    max_num_results = 3,
+                    sort = true
+                },
+                config = function(_, opts)
+                    require("cmp_tabnine.config"):setup(opts)
+                end
+            }
         },
         config = function()
             local ls = require("luasnip")
-            vim.keymap.set({"i", "s"}, "<C-L>", function()
+            vim.keymap.set({ "i", "s" }, "<C-L>", function()
                 ls.jump(1)
-            end, { silent = true})
-            vim.keymap.set({"i", "s"}, "<C-J>", function()
+            end, { silent = true })
+            vim.keymap.set({ "i", "s" }, "<C-J>", function()
                 ls.jump(-1)
-            end, { silent = true})
+            end, { silent = true })
 
             local lspkind = require("lspkind")
             local cmp = require("cmp")
 
             cmp.setup({
+                formatting = {
+                    format = lspkind.cmp_format({
+                        mode = "symbol",
+                        before = function(entry, vim_item)
+                            if entry.source.name == "cmp_tabnine" then
+                                vim_item.menu = ""
+                            end
+                            return vim_item
+                        end
+                    })
+                },
                 snippet = {
                     expand = function(args)
                         require("luasnip").lsp_expand(args.body)
@@ -41,9 +66,11 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
+                    { name = "cmp_tabnine" },
                     { name = "luasnip" },
                     { name = "nvim_lua" },
                     { name = "buffer" },
+                    { name = "path" }
                 })
             })
         end,

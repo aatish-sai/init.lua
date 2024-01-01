@@ -11,7 +11,10 @@ return {
         keys = {},
         opts = {
             options = {
-                separator_style = "slant",
+                indicator = {
+                    style = 'underline'
+                },
+                show_buffer_close_icons = true,
                 diagnostics = "nvim_lsp",
                 offsets = {
                     {
@@ -30,15 +33,43 @@ return {
         event = "VeryLazy",
         opts = {
             options = {
-                theme = "catppuccin",
+                icons_enabled = false,
                 globalstatus = true,
+                theme = 'tokyonight',
                 sections = {
                     lualine_c = {}
                 }
             }
         },
-        init = function ()
+        init = function()
             vim.opt.showmode = false
         end
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        opts = {
+            indent = {
+                char = "|",
+                tab_char = "|",
+            },
+            scope = {
+                enabled = true
+            },
+            exclude = {
+                filetypes = {
+                    "help",
+                    "lazyterm",
+                    "Trouble",
+                    "lazy",
+                    "mason",
+                    "notify",
+                    "toggleterm",
+                    "NvimTree",
+                    "dashoboard",
+                    "float"
+                }
+            }
+        },
+        main = "ibl"
     }
 }

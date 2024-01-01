@@ -33,10 +33,14 @@ return {
             find_files = {
                 find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" }
             }
+        },
+        extensions = {
+            ["ui-select"] = {}
         }
     },
     config = function(_, opts)
         require("telescope").setup({ opts })
+        require("telescope").load_extension("ui-select")
         require("telescope").load_extension("fzf")
         require("telescope").load_extension("file_browser")
     end,

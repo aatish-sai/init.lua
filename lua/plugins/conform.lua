@@ -13,6 +13,14 @@ return {
     },
     opts = {
         format_by_ft = {
+            javascript = { { "prettierd", "prettier" } },
+            typescript = { { "prettierd", "prettier" } },
+            javascriptreact = { "prettierd" },
+            typescriptreact = { "prettierd" },
+            css = { "prettierd" },
+            html = { "prettierd" },
+            json = { "prettierd" },
+            markdown = { "prettierd" },
             lua = { "stylua" },
             python = { "isort", "black" },
             php = { "pint" },

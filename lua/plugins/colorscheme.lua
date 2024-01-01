@@ -4,9 +4,13 @@ return {
         lazy = false,
         priority = 1000,
         opts = {
-            transparent = false,
+            transparent = true,
+            styles = {
+                sidebars = "transparent",
+                floats = "transparent",
+            }
         },
-        init = function ()
+        init = function()
             vim.cmd.colorscheme("tokyonight")
         end
     }

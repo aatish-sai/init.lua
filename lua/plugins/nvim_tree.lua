@@ -9,13 +9,11 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     opts = {
+        disable_netrw = true,
         update_cwd = true,
         hijack_cursor = true,
         git = {
             ignore = false
-        },
-        view = {
-            width = 30
         },
         renderer = {
             highlight_git = true,

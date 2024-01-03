@@ -40,6 +40,9 @@ keymap("n", "<leader>w", vim.cmd.w, opts)
 
 keymap("n", "<leader><leader>", vim.cmd.so, opts)
 
+-- Netrw
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+
 -- Bufferline Navigation
 keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)

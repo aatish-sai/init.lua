@@ -14,7 +14,6 @@ return {
         { "<leader>pf", "<cmd>Telescope find_files<CR>" },
         { "<leader>pb", "<cmd>Telescope buffers<CR>" },
         { "<leader>ps", "<cmd>Telescope live_grep<CR>" },
-        { "<leader>pd", "<cmd>Telescope diagnostics<CR>" },
     },
     opts = {
         pickers = {

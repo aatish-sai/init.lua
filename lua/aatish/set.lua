@@ -41,7 +41,7 @@ vim.opt.updatetime = 300
 vim.opt.colorcolumn = "80"
 
 vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
+vim.opt.cursorlineopt = "both"
 
 vim.opt.termguicolors = true
 

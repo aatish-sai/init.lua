@@ -40,7 +40,7 @@ return {
             cmp.setup({
                 formatting = {
                     format = lspkind.cmp_format({
-                        mode = "symbol",
+                        mode = "text",
                         before = function(entry, vim_item)
                             if entry.source.name == "cmp_tabnine" then
                                 vim_item.menu = ""

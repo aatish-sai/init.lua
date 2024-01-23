@@ -41,13 +41,4 @@ keymap("n", "<leader>w", vim.cmd.w, opts)
 keymap("n", "<leader><leader>", vim.cmd.so, opts)
 
 -- Netrw
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
-
--- Bufferline Navigation
-keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", opts)
-keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", opts)
-keymap("n", "<S-h>", ":BufferLineMovePrev<CR>", opts)
-keymap("n", "<S-l>", ":BufferLineMoveNext<CR>", opts)
-
--- Toggle qflist
-keymap("n", "<leader>q", "<cmd>lua require('utils').toogle_quicklist()<CR>", opts)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)

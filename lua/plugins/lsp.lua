@@ -11,6 +11,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
+			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
 			-- import lspconfig plugin
@@ -18,53 +19,49 @@ return {
 
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-			local capabilities = cmp_nvim_lsp.default_capabilities()
+			local capabilities = vim.tbl_deep_extend(
+				"force",
+				{},
+				vim.lsp.protocol.make_client_capabilities(),
+				cmp_nvim_lsp.default_capabilities()
+			)
 
-			lspconfig["lua_ls"].setup({
-				capabilities = capabilities,
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls",
+					"tsserver",
+				},
+				handlers = {
+					function(server_name)
+						lspconfig[server_name].setup({
+							capabilities = capabilities,
+						})
+					end,
+					["lua_ls"] = function()
+						lspconfig.lua_ls.setup({
+							capabilities = capabilities,
+							settings = {
+								Lua = {
+									diagnostics = {
+										globals = { "vim" },
+									},
+								},
+							},
+						})
+					end,
 				},
 			})
 
-			lspconfig["pyright"].setup({})
-
-			lspconfig["pylsp"].setup({})
-
-			lspconfig["intelephense"].setup({})
-
-			lspconfig["phpactor"].setup({})
-
-			lspconfig["terraformls"].setup({})
-
-			lspconfig["tailwindcss"].setup({})
-
-			lspconfig["nginx_language_server"].setup({})
-
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-			lspconfig["jsonls"].setup({
-				capabilities = capabilities,
+			vim.diagnostic.config({
+				float = {
+					focusable = false,
+					style = "minimal",
+					border = "rounded",
+					source = "always",
+					header = "",
+					prefix = "",
+				},
 			})
-
-			lspconfig["html"].setup({})
-
-			lspconfig["dockerls"].setup({})
-
-			lspconfig["docker_compose_language_service"].setup({})
-
-			lspconfig["cssls"].setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig["vuels"].setup({})
-
-			lspconfig["tsserver"].setup({})
-
-			lspconfig["gopls"].setup({})
 
 			-- Global mappings.
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -88,7 +85,7 @@ return {
 					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, opts)
+					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
 					vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)

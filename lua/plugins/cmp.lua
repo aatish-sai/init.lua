@@ -37,6 +37,8 @@ return {
 			local lspkind = require("lspkind")
 			local cmp = require("cmp")
 
+			local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
 			cmp.setup({
 				formatting = {
 					format = lspkind.cmp_format({
@@ -68,6 +70,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "cmp_tabnine" },
 					{ name = "luasnip" },
+				}, {
 					{ name = "nvim_lua" },
 					{ name = "buffer" },
 					{ name = "path" },

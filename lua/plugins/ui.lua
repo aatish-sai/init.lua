@@ -1,4 +1,8 @@
 return {
+    {
+        "j-hui/fidget.nvim",
+        opts = {}
+    },
 	{
 		"akinsho/bufferline.nvim",
 		event = "VeryLazy",

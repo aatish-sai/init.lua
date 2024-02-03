@@ -1,3 +1,8 @@
+function InitColorProfile(color)
+	color = color or "rose-pine"
+	vim.cmd.colorscheme(color)
+end
+
 return {
 	{
 		"rose-pine/neovim",
@@ -9,7 +14,7 @@ return {
 			dark_variant = "main",
 		},
 		init = function()
-			vim.cmd.colorscheme("rose-pine")
+			InitColorProfile("rose-pine")
 		end,
 	},
 }

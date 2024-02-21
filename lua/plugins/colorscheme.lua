@@ -13,8 +13,14 @@ return {
 			variant = "main",
 			dark_variant = "main",
 		},
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
 		init = function()
-			InitColorProfile("rose-pine")
+			InitColorProfile("tokyonight")
 		end,
 	},
 }

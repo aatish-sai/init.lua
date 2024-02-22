@@ -41,9 +41,6 @@ return {
 			}
 
 			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"stylelua",
-			})
 
 			require("mason-lspconfig").setup({
 				ensure_installed = ensure_installed,

@@ -23,30 +23,38 @@ return {
 				"force",
 				{},
 				vim.lsp.protocol.make_client_capabilities(),
-				cmp_nvim_lsp.default_capabilities()
+				cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 			)
 
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"tsserver",
+			local servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							workspace = { checkThirdParty = false },
+							telemetry = { enable = false },
+							diagnostics = {
+								globals = { "vim" },
+							},
+						},
+					},
 				},
+			}
+
+			local ensure_installed = vim.tbl_keys(servers or {})
+			vim.list_extend(ensure_installed, {
+				"stylelua",
+			})
+
+			require("mason-lspconfig").setup({
+				ensure_installed = ensure_installed,
 				handlers = {
 					function(server_name)
-						lspconfig[server_name].setup({
-							capabilities = capabilities,
-						})
-					end,
-					["lua_ls"] = function()
-						lspconfig.lua_ls.setup({
-							capabilities = capabilities,
-							settings = {
-								Lua = {
-									diagnostics = {
-										globals = { "vim" },
-									},
-								},
-							},
+						local server = servers[server_name] or {}
+						require("lspconfig")[server_name].setup({
+							cmd = server.cmd,
+							settings = server.settings,
+							filetypes = server.filetypes,
+							capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
 						})
 					end,
 				},

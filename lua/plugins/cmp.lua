@@ -27,12 +27,8 @@ return {
 		},
 		config = function()
 			local ls = require("luasnip")
-			vim.keymap.set({ "i", "s" }, "<C-L>", function()
-				ls.jump(1)
-			end, { silent = true })
-			vim.keymap.set({ "i", "s" }, "<C-J>", function()
-				ls.jump(-1)
-			end, { silent = true })
+			require("luasnip.loaders.from_vscode").lazy_load()
+			ls.config.setup({})
 
 			local lspkind = require("lspkind")
 			local cmp = require("cmp")
@@ -40,6 +36,14 @@ return {
 			local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 			cmp.setup({
+				snippet = {
+					expand = function(args)
+						ls.lsp_expand(args.body)
+					end,
+				},
+				completion = {
+					completeopt = "menu,menuone,noinsert,noselect",
+				},
 				formatting = {
 					format = lspkind.cmp_format({
 						mode = "symbol_text",
@@ -51,11 +55,6 @@ return {
 						end,
 					}),
 				},
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
@@ -64,12 +63,22 @@ return {
 					["<C-p>"] = cmp.mapping.select_prev_item(),
 					["<C-n>"] = cmp.mapping.select_next_item(),
 					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<C-l>"] = cmp.mapping(function()
+						if ls.expand_or_locally_jumpable() then
+							ls.expand_or_jump()
+						end
+					end, { "i", "s" }),
+					["<C-h>"] = cmp.mapping(function()
+						if ls.locally_jumpable(-1) then
+							ls.jump(-1)
+						end
+					end, { "i", "s" }),
 					["<C-Space>"] = cmp.mapping.complete(),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "cmp_tabnine" },
 					{ name = "luasnip" },
+					{ name = "cmp_tabnine" },
 				}, {
 					{ name = "nvim_lua" },
 					{ name = "buffer" },

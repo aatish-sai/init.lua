@@ -12,13 +12,13 @@ return {
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason-lspconfig.nvim",
+			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()
 			-- import lspconfig plugin
 			local lspconfig = require("lspconfig")
 
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 			local capabilities = vim.tbl_deep_extend(
 				"force",
 				{},
@@ -80,21 +80,22 @@ return {
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 				callback = function(ev)
-					-- Enable completion triggered by <c-x><c-o>
-					vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+					local map = function(keys, func, desc)
+						vim.keymap.set("n", keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
+					end
+
+					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					map("<space>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
 					-- Buffer local mappings.
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
-					local opts = { buffer = ev.buf }
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-					vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-					vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-					vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-					vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+					map("gD", vim.lsp.buf.declaration, "[G]oto [D]ecleration")
+					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					map("<space>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+					map("<space>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+					map("<C-k>", vim.lsp.buf.signature_help, "Signature Help")
 				end,
 			})
 		end,

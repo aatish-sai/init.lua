@@ -1,6 +1,7 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
@@ -79,7 +80,6 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "cmp_tabnine" },
-				}, {
 					{ name = "nvim_lua" },
 					{ name = "buffer" },
 					{ name = "path" },

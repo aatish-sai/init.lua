@@ -39,7 +39,7 @@ return {
 		event = "VeryLazy",
 		opts = {
 			options = {
-				icons_enabled = true,
+				icons_enabled = false,
 				globalstatus = true,
 				theme = "auto",
 				section_separators = "",

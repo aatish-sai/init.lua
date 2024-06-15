@@ -3,6 +3,12 @@ vim.g.mapleader = " "
 local keymap = vim.keymap.set
 local opts = { silent = true }
 
+-- Windows Navigation
+keymap("n", "<C-j>", "<C-w><C-j>")
+keymap("n", "<C-k>", "<C-w><C-k>")
+keymap("n", "<C-l>", "<C-w><C-l>")
+keymap("n", "<C-h>", "<C-w><C-h>")
+
 -- Netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 

@@ -28,6 +28,7 @@ return {
 
 			local servers = {
 				lua_ls = {
+                    capabilities = capabilities,
 					settings = {
 						Lua = {
 							workspace = { checkThirdParty = false },
@@ -47,7 +48,7 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						require("lspconfig")[server_name].setup({
+						lspconfig[server_name].setup({
 							cmd = server.cmd,
 							settings = server.settings,
 							filetypes = server.filetypes,

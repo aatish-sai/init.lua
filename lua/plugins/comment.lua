@@ -1,4 +1,10 @@
 return {
-    "numToStr/Comment.nvim",
-    opts = {}
+    {
+        "numToStr/Comment.nvim",
+        opts = {}
+    },
+    {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        opts = {}
+    }
 }

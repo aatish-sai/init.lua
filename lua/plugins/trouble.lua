@@ -33,4 +33,7 @@ return {
 			end,
 		},
 	},
+    opts = {
+        icons = false
+    }
 }

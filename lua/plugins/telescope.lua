@@ -10,29 +10,13 @@ return {
 		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	keys = {
-		{ "<C-p>", "<cmd>Telescope git_files<CR>" },
-		{ "<leader>pf", "<cmd>Telescope find_files<CR>" },
+		{ "<C-p>", "<cmd>Telescope find_files<CR>" },
+		{ "<leader>pf", "<cmd>Telescope git_files<CR>" },
 		{ "<leader>pb", "<cmd>Telescope buffers<CR>" },
 		{ "<leader>ps", "<cmd>Telescope live_grep<CR>" },
 	},
 	opts = {
 		pickers = {
-			live_grep = {
-				vimgrep_arguments = {
-					"rg",
-					"--color=never",
-					"--no-heading",
-					"--line-number",
-					"--column",
-					"--smart-case",
-					"--hidden",
-					"--glob",
-					"!**/.git/*",
-				},
-			},
-			find_files = {
-				find_command = { "rg", "--files", "--hidden", "--no-ignore" },
-			},
 		},
 		extensions = {
 			["ui-select"] = {},

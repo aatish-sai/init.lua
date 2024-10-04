@@ -19,14 +19,14 @@ return {
 		lazy = false,
 		priority = 1000,
 		opts = {},
+		init = function()
+			InitColorProfile("tokyonight-night")
+		end,
 	},
 	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
 		config = true,
 		opts = {},
-		init = function()
-			InitColorProfile("gruvbox")
-		end,
 	}
 }

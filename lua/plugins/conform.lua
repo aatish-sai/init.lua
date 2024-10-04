@@ -30,6 +30,7 @@ return {
             lua = { "stylua" },
             python = { "isort", "black" },
             php = { "pint" },
+            yaml = { "yamlfmt" }
         },
         formatters = {
             injected = { options = { ignore_errors = true } },

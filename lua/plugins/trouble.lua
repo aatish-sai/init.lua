@@ -1,11 +1,11 @@
 return {
 	"folke/trouble.nvim",
-	cmd = { "TroubleToggle", "Trouble" },
+	cmd = { "Trouble" },
 	keys = {
-		{ "<leader>xx", "<cmd>TroubleToggle document_diagnostics<CR>", desc = "Document Diagnostics (Trouble)" },
-		{ "<leader>xX", "<cmd>TroubleToggle worspace_diagnostics<CR>", desc = "Workspace Diagnostics (Trouble)" },
-		{ "<leader>xl", "<cmd>TroubleToggle loclist<CR>", desc = "Location List (Trouble)" },
-		{ "<leader>xq", "<cmd>TroubleToggle quickfix<CR>", desc = "Quickfix List (Trouble)" },
+		{ "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
+		{ "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
+		{ "<leader>xl", "<cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
+		{ "<leader>xq", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
 		{
 			"[q",
 			function()
@@ -34,6 +34,7 @@ return {
 		},
 	},
     opts = {
+        auto_close = true,
         icons = false
     }
 }

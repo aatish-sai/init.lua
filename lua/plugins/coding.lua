@@ -19,4 +19,8 @@ return {
             check_ts = true
         }
     },
+    {
+        'Exafunction/codeium.vim',
+        event = 'BufEnter'
+    },
 }

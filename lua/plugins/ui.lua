@@ -20,7 +20,9 @@ return {
                 indicator = {
                     style = "underline",
                 },
+                show_buffer_icons = false,
                 show_buffer_close_icons = true,
+                separator_style = "thick",
                 diagnostics = "nvim_lsp",
                 offsets = {
                     {

@@ -11,9 +11,10 @@ return {
 	},
 	keys = {
 		{ "<C-p>", "<cmd>Telescope find_files<CR>" },
-		{ "<leader>pf", "<cmd>Telescope git_files<CR>" },
-		{ "<leader>pb", "<cmd>Telescope buffers<CR>" },
-		{ "<leader>ps", "<cmd>Telescope live_grep<CR>" },
+		{ "<leader>ft", "<cmd>Telescope git_files<CR>" },
+		{ "<leader>fb", "<cmd>Telescope buffers<CR>" },
+		{ "<leader>fg", "<cmd>Telescope live_grep<CR>" },
+    {"<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>"},
 	},
 	opts = {
 		pickers = {

@@ -9,6 +9,16 @@ keymap("n", "<C-k>", "<C-w><C-k>")
 keymap("n", "<C-l>", "<C-w><C-l>")
 keymap("n", "<C-h>", "<C-w><C-h>")
 
+keymap("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+keymap("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
+
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set("n", "vd", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+
 -- Netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -41,5 +51,5 @@ keymap("v", ">", ">gv", opts)
 -- Save
 keymap("n", "<leader>w", vim.cmd.w, opts)
 
-keymap("n", "<leader><leader>", vim.cmd.so, opts)
-
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true

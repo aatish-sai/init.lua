@@ -67,14 +67,29 @@ vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 
--- Dont add comment link for new line with `o`
+-- Add comment link for new line with remove with Ctrl - u
 vim.opt.formatoptions:remove "o"
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+  group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
+
+-- Hide Copilot on suggestions
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'BlinkCmpCompletionMenuOpen',
+  callback = function()
+    vim.b.copilot_suggestion_hidden = true
+  end
+})
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'BlinkCmpCompletionMenuClose',
+  callback = function()
+    vim.b.copilot_suggestion_hidden = false
+  end
+})
+

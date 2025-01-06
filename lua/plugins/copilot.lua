@@ -1,8 +1,10 @@
 return {
 	"github/copilot.vim",
 	config = function()
-		vim.cmd('imap <silent><script><expr> <C-CR> copilot#Accept("\\<CR>")')
+		vim.keymap.set('i', "<C-j>", 'copilot#Accept("\\<CR>")', {
+			replace_keycodes = false,
+			expr = true
+		})
 		vim.g.copilot_no_tab_map = true
-		vim.g.copilot_enabled = false
 	end,
 }

@@ -1,38 +1,18 @@
-function InitColorProfile(color)
-	color = color or "rose-pine"
-	vim.cmd.colorscheme(color)
-end
-
 return {
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		lazy = false,
-		priority = 1000,
-		opts = {
-			variant = "main",
-			dark_variant = "main",
-		},
-	},
-	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {
-            transparent = true,
-            styles = {
-                sidebars = 'transparent',
-                floats = 'transparent',
-            }
-        },
-		init = function()
-			InitColorProfile("tokyonight-night")
-		end,
-	},
-	{
-		"ellisonleao/gruvbox.nvim",
-		priority = 1000,
-		config = true,
-		opts = {},
-	}
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+      styles = { },
+      on_colors = function (colors)
+        colors.bg = "#000000"
+        colors.bg_float = "#000000"
+      end
+  },
+    init = function()
+      vim.cmd [[colorscheme tokyonight-night]]
+    end,
+  },
 }

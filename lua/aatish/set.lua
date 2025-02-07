@@ -13,7 +13,6 @@ vim.opt.breakindent = true
 
 -- Save undo history
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
